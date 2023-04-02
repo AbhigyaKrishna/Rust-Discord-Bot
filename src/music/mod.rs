@@ -10,7 +10,7 @@ use songbird::id::{ChannelId as SChannelId, GuildId as SGuildId};
 use songbird::{input, Songbird};
 use songbird::input::Input;
 
-#[derive(Clone, Debug)]
+#[derive(Debug)]
 pub(crate) struct TrackQueue {
     queue: VecDeque<Input>
 }
