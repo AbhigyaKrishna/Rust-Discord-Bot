@@ -19,7 +19,7 @@ async fn main() {
         .group(&MUSIC_GROUP);
 
     // Login with a bot token from the environment
-    let token = env::args().nth(1).expect("Expected a bot token");
+    let token = env::args().last().expect("Expected a bot token");
     let intents = GatewayIntents::non_privileged() |
         GatewayIntents::MESSAGE_CONTENT | GatewayIntents::GUILD_VOICE_STATES;
     let mut client = Client::builder(token, intents)
