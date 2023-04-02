@@ -820,6 +820,9 @@ name = "music_bot"
 version = "0.1.0"
 dependencies = [
  "convert_case",
+ "flume",
+ "lock_api",
+ "parking_lot",
  "serenity",
  "songbird",
  "tokio",

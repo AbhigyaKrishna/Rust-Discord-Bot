@@ -11,10 +11,13 @@ convert_case = "0.6.0"
 tracing = "0.1"
 tracing-subscriber = "0.3.16"
 tracing-futures = "0.2"
+lock_api = "0.4.9"
+parking_lot = "0.12.1"
+flume = "0.10.14"
 
 [dependencies.songbird]
 version = "0.3.1"
-features = ["default", "yt-dlp"]
+features = ["default", "yt-dlp", "builtin-queue"]
 
 [dependencies.tokio]
 version = "1.21.2"

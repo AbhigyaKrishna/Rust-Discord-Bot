@@ -3,7 +3,8 @@ use serenity::framework::standard::{Args, CommandResult};
 use serenity::framework::standard::macros::command;
 use serenity::model::guild::Change::ChannelId;
 use serenity::model::prelude::Message;
-use songbird::{Event, input, TrackEvent};
+use songbird::{Event, TrackEvent};
+use songbird::input::Restartable;
 use crate::music::{get_songbird_manager, SongEndNotifier};
 
 #[command]
@@ -37,10 +38,10 @@ async fn play(ctx: &Context, msg: &Message, mut arg: Args) -> CommandResult {
 
     let term = arg.rest();
 
-    match input::ytdl_search(term).await {
+    match Restartable::ytdl_search(term, true).await {
         Ok(src) => {
             let queue = !handler.queue().is_empty();
-            let song = handler.enqueue_source(src);
+            let song = handler.enqueue_source(src.into());
             let send_http = ctx.http.clone();
             let channel_id = msg.channel_id;
 
