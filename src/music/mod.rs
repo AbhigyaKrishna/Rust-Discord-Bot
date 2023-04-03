@@ -1,14 +1,24 @@
 mod track;
 
-use std::collections::VecDeque;
-use std::sync::Arc;
-use std::sync::atomic::AtomicUsize;
-use serenity::http::client::Http;
-use serenity::model::prelude::ChannelId;
-use serenity::prelude::Context;
-use songbird::id::{ChannelId as SChannelId, GuildId as SGuildId};
-use songbird::{input, Songbird};
-use songbird::input::Input;
+use std::{
+    collections::VecDeque,
+    sync::Arc,
+    sync::atomic::AtomicUsize
+};
+use serenity::{
+    http::client::Http,
+    model::prelude::ChannelId,
+    prelude::Context
+};
+use songbird::{
+    id::{
+        ChannelId as SChannelId,
+        GuildId as SGuildId
+    },
+    input,
+    Songbird,
+    input::Input
+};
 
 #[derive(Debug)]
 pub(crate) struct TrackQueue {

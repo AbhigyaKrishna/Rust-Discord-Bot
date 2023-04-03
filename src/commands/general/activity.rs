@@ -1,8 +1,16 @@
 use convert_case::{Case, Casing};
-use serenity::framework::standard::{Args, CommandResult};
-use serenity::framework::standard::macros::command;
-use serenity::model::prelude::{Activity, Message};
-use serenity::prelude::Context;
+use serenity::{
+    framework::standard::{
+        Args,
+        CommandResult,
+        macros::command
+    },
+    model::prelude::{
+        Activity,
+        Message
+    },
+    prelude::Context
+};
 
 #[command]
 async fn activity(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {

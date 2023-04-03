@@ -1,9 +1,22 @@
 use std::sync::atomic::Ordering;
-use serenity::async_trait;
-use serenity::model::prelude::Ready;
-use serenity::prelude::{Context, EventHandler};
-use songbird::{Event, EventContext, EventHandler as VoiceEventHandler};
-use crate::music::{ChannelDurationNotifier, SongEndNotifier, TrackEndNotifier};
+use serenity::{
+    async_trait,
+    model::prelude::Ready,
+    prelude::{
+        Context,
+        EventHandler
+    }
+};
+use songbird::{
+    Event,
+    EventContext,
+    EventHandler as VoiceEventHandler
+};
+use crate::music::{
+    ChannelDurationNotifier,
+    SongEndNotifier,
+    TrackEndNotifier
+};
 
 pub(crate) struct Handler;
 

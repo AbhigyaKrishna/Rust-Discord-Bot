@@ -1,9 +1,11 @@
-use serenity::framework::standard::macros::group;
-use crate::commands::general::ping::PING_COMMAND;
-use crate::commands::general::activity::ACTIVITY_COMMAND;
-
 mod activity;
 mod ping;
+
+use serenity::framework::standard::macros::group;
+use crate::commands::general::{
+    ping::PING_COMMAND,
+    activity::ACTIVITY_COMMAND,
+};
 
 #[group]
 #[commands(ping, activity)]

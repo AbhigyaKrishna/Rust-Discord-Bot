@@ -1,10 +1,20 @@
-use serenity::client::Context;
-use serenity::framework::standard::{Args, CommandResult};
-use serenity::framework::standard::macros::command;
-use serenity::model::guild::Change::ChannelId;
-use serenity::model::prelude::Message;
-use songbird::{Event, TrackEvent};
-use songbird::input::Restartable;
+use serenity::{
+    client::Context,
+    framework::standard::{
+        Args,
+        CommandResult,
+        macros::command,
+    },
+    model::{
+        guild::Change::ChannelId,
+        prelude::Message,
+    }
+};
+use songbird::{
+    Event,
+    TrackEvent,
+    input::Restartable,
+};
 use crate::music::{get_songbird_manager, SongEndNotifier};
 
 #[command]

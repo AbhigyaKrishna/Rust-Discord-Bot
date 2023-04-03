@@ -1,15 +1,19 @@
-use std::env;
-use serenity::Client;
-use serenity::framework::standard::StandardFramework;
-use serenity::prelude::GatewayIntents;
-use songbird::SerenityInit;
-use crate::commands::general::GENERAL_GROUP;
-use crate::commands::music::MUSIC_GROUP;
-use crate::event_handler::Handler;
-
 mod commands;
 mod event_handler;
 mod music;
+
+use std::env;
+use serenity::{
+    Client,
+    framework::standard::StandardFramework,
+    prelude::GatewayIntents,
+};
+use songbird::SerenityInit;
+use crate::{
+    commands::general::GENERAL_GROUP,
+    commands::music::MUSIC_GROUP,
+    event_handler::Handler,
+};
 
 #[tokio::main]
 async fn main() {

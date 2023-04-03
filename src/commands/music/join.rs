@@ -1,7 +1,11 @@
-use serenity::framework::standard::CommandResult;
-use serenity::framework::standard::macros::command;
-use serenity::model::prelude::Message;
-use serenity::prelude::Context;
+use serenity::{
+    framework::standard::{
+        CommandResult,
+        macros::command,
+    },
+    model::prelude::Message,
+    prelude::Context,
+};
 use crate::music::get_songbird_manager;
 
 #[command]
