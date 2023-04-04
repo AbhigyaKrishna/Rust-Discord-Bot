@@ -1,58 +1,45 @@
-mod track;
-
-use std::{
-    collections::VecDeque,
-    sync::Arc,
-    sync::atomic::AtomicUsize
-};
+use std::sync::Arc;
 use serenity::{
+    async_trait,
     http::client::Http,
     model::prelude::ChannelId,
     prelude::Context
 };
 use songbird::{
-    id::{
-        ChannelId as SChannelId,
-        GuildId as SGuildId
-    },
-    input,
-    Songbird,
-    input::Input
+    Event,
+    EventContext,
+    EventHandler as VoiceEventHandler,
+    Songbird
 };
-
-#[derive(Debug)]
-pub(crate) struct TrackQueue {
-    queue: VecDeque<Input>
-}
-
-impl TrackQueue {
-    pub fn new() -> Self {
-        Self {
-            queue: VecDeque::new()
-        }
-    }
-}
-
-impl Default for TrackQueue {
-    fn default() -> Self {
-        Self::new()
-    }
-}
 
 pub(crate) struct TrackEndNotifier {
     pub channel_id: ChannelId,
     pub http: Arc<Http>
 }
 
-pub(crate) struct ChannelDurationNotifier {
-    pub channel_id: ChannelId,
-    pub count: Arc<AtomicUsize>,
-    pub http: Arc<Http>
+#[async_trait]
+impl VoiceEventHandler for TrackEndNotifier {
+    async fn act(&self, ctx: &EventContext<'_>) -> Option<Event> {
+        if let EventContext::Track(track_list) = ctx {
+            let _ = self.channel_id.say(&self.http, format!("Track ended: {}.", track_list.len())).await;
+        }
+
+        None
+    }
 }
 
 pub(crate) struct SongEndNotifier {
     pub channel_id: ChannelId,
     pub http: Arc<Http>
+}
+
+#[async_trait]
+impl VoiceEventHandler for SongEndNotifier {
+    async fn act(&self, _ctx: &EventContext<'_>) -> Option<Event> {
+        let _ = self.channel_id.say(&self.http, "Song ended.").await;
+
+        None
+    }
 }
 
 pub async fn get_songbird_manager(ctx: &Context) -> Arc<Songbird> {

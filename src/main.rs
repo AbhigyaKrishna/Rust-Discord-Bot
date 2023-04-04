@@ -10,8 +10,10 @@ use serenity::{
 };
 use songbird::SerenityInit;
 use crate::{
-    commands::general::GENERAL_GROUP,
-    commands::music::MUSIC_GROUP,
+    commands::{
+        general::GENERAL_GROUP,
+        music::MUSIC_GROUP
+    },
     event_handler::Handler,
 };
 
