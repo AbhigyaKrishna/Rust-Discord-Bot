@@ -1,14 +1,11 @@
 use serenity::{
-    client::Context,
+    prelude::Context,
     framework::standard::{
         Args,
         CommandResult,
         macros::command,
     },
-    model::{
-        guild::Change::ChannelId,
-        prelude::Message,
-    }
+    model::prelude::Message
 };
 use songbird::{
     Event,
@@ -19,7 +16,7 @@ use crate::music::{get_songbird_manager, SongEndNotifier};
 
 #[command]
 #[only_in(guilds)]
-async fn play(ctx: &Context, msg: &Message, mut arg: Args) -> CommandResult {
+async fn play(ctx: &Context, msg: &Message, arg: Args) -> CommandResult {
     let guild = msg.guild(&ctx.cache).unwrap();
     let guild_id = guild.id;
 
@@ -40,7 +37,7 @@ async fn play(ctx: &Context, msg: &Message, mut arg: Args) -> CommandResult {
             let _ = handler.join(id).await;
         }
     } else {
-        manager.join(guild_id, id).await;
+        let _ = manager.join(guild_id, id).await;
     }
 
     let handler = manager.get(guild_id).unwrap();

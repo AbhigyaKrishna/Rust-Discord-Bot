@@ -1,15 +1,22 @@
+pub mod queue;
+
 use std::sync::Arc;
+use tokio::sync::RwLock;
 use serenity::{
     async_trait,
     http::client::Http,
     model::prelude::ChannelId,
-    prelude::Context
+    prelude::{
+        Context,
+        TypeMap
+    }
 };
 use songbird::{
     Event,
     EventContext,
     EventHandler as VoiceEventHandler,
-    Songbird
+    Songbird,
+    SongbirdKey
 };
 
 pub(crate) struct TrackEndNotifier {
@@ -40,6 +47,12 @@ impl VoiceEventHandler for SongEndNotifier {
 
         None
     }
+}
+
+pub async fn get_songbird_manager_throught_data(data: &Arc<RwLock<TypeMap>>) -> Arc<Songbird> {
+    let data = data.read().await;
+    data.get::<SongbirdKey>().cloned()
+    .expect("Songbird Voice client placed in at initialisation.").clone()
 }
 
 pub async fn get_songbird_manager(ctx: &Context) -> Arc<Songbird> {

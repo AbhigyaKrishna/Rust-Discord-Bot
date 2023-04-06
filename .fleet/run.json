@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "type": "cargo",
+            "name": "Cargo Build configuration",
+            "cargoArgs": ["build"],
+        },
+        {
+            "type": "cargo",
+            "name": "Cargo Clean configuration",
+            "cargoArgs": ["clean"],
+        },
+        
+    ]
+}

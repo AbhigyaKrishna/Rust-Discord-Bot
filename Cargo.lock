@@ -975,6 +975,7 @@ name = "music_bot"
 version = "0.1.0"
 dependencies = [
  "convert_case",
+ "dashmap",
  "rand 0.7.3",
  "reqwest 0.10.10",
  "serde",

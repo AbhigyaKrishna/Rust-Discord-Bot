@@ -20,7 +20,7 @@ async fn join(ctx: &Context, msg: &Message) -> CommandResult {
 
     if let Some(id) = channel_id {
         let manager = get_songbird_manager(ctx).await;
-        manager.join(guild_id, id).await;
+        let _ = manager.join(guild_id, id).await;
         msg.reply(ctx, "Joined channel").await?;
     } else {
         msg.reply(ctx, "Not in voice channel").await?;
